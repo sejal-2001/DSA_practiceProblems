@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int sum(int *p ,int size){
+    
+    int maxi = 0;
+    int i ;
+    for(i =0;i<size;i++){
+        maxi += *(p+i);
+    }
+    return maxi;
+}
+
+
+
+int main()
+{
+   int a[5] = {11,1,1,1,1};
+   int result = sum(a,5);
+   printf("sum is %d ",result);
+
+    return 0;
+}
