@@ -1,4 +1,5 @@
 que  : MIDDLE ELEMENT IN LINKED LIST
+APPROACH 1: TIME COMPLEXITY O(n)
 
 
 int getlen(Node* head){
@@ -26,3 +27,38 @@ Node *findMiddle(Node *head) {
     }
     return temp;
 }
+
+
+
+OR   NEXT APPROACH WITH O(n/2)TIME COMPLEXITY
+
+Node *getmid(Node* head){
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+    if(head->next->next == NULL){
+        return head->next;
+    }
+    
+    Node* slow = head;
+    Node* fast = head->next;
+    while(fast != NULL){
+        fast=fast->next;
+        if(fast != NULL){
+            fast=fast->next;
+        }
+        
+        slow=slow->next;  
+    }
+    return slow;
+     
+}
+
+
+
+Node *findMiddle(Node *head) {
+    // Write your code here
+    return getmid(head);
+
+}
+
