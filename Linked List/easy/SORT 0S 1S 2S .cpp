@@ -44,3 +44,80 @@ Node* sortList(Node *head)
     return head;
 
 }
+
+
+
+
+AAPROACH 2 :-  WHEN DATA REPLACEMENT IS NOT ALLOWED
+
+/********************************
+    class Node
+    {
+    public:
+        int data;
+        Node *next;
+        Node(int data)
+        {
+            this->data = data;
+            this->next = NULL;
+        }
+    };
+
+********************************/
+void insertAttail(Node* &tail,Node* temp){
+    tail->next = temp;
+    tail = temp;
+}
+
+
+Node* sortList(Node *head)
+{
+    // Write your code here.
+    
+    Node* zerohead = new Node(-1);
+    Node* zerotail = zerohead;
+    Node* onehead = new Node(-1);
+    Node* onetail = onehead;
+    Node* twohead = new Node(-1);
+    Node* twotail = twohead;
+    
+    Node* temp = head;
+    //creating separate linked lists of 0S 1S and 2S
+    while(temp != NULL){
+        int val = temp->data;
+        if(val == 0){
+            insertAttail(zerotail ,temp);
+        }
+     else   if(val == 1){
+            insertAttail(onetail,temp);
+        }
+     else if(val == 2){
+         insertAttail(twotail ,temp);
+     }   
+     temp = temp->next;   
+        
+    }
+    
+    //merge three lists
+    if(onehead->next != NULL){
+        zerotail->next = onehead->next;
+    }
+    else{
+        //1st list is empty
+        zerotail->next = twohead->next;
+    }
+    
+    onetail->next = twohead->next;
+    twotail->next = NULL;
+    
+    //setuphead
+    head = zerohead->next;
+    
+    //delete dummy lists
+    delete zerohead;
+    delete onehead;
+    delete twohead;
+    
+    return head; 
+}
+
