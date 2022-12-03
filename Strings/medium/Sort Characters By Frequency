@@ -1,0 +1,65 @@
+class Solution {
+public:
+    string frequencySort(string s) {
+
+ unordered_map<char, int> m;
+        for (int i = 0; i < s.length(); ++i)
+        {
+            m[s[i]]++;
+        }
+        
+        vector<unordered_map<char, int>::iterator> v;
+        for (auto it = m.begin(); it != m.end(); ++it)
+        {
+            v.push_back(it);
+        }
+        
+        // Sort map.
+        sortIterVector(v, 0, v.size() - 1);
+        
+        string res;
+        res.resize(s.length());
+
+        // Construct the sorted string.
+        auto si = res.begin();
+        for (int i = 0; i < v.size(); ++i)
+        {
+            fill(si, si + v[i]->second, v[i]->first);
+            si += v[i]->second;
+        }
+        
+        return res;
+    }
+    
+private:
+    int partition(vector<unordered_map<char, int>::iterator>& v, int l, int r)
+    {
+        int p = v[r]->second;
+        int i = l - 1;
+        
+        for (int j = l; j <= r - 1; ++j)
+        {
+            if (v[j]->second >= p)
+            {
+                ++i;
+                swap(v[i], v[j]);
+            }
+        }
+        
+        int q = i + 1;
+        swap(v[q], v[r]);
+        
+        return q;
+    }
+
+    void sortIterVector(vector<unordered_map<char, int>::iterator>& v, int l, int r)
+    {
+        if (l < r)
+        {
+            int q = partition(v, l, r);
+            sortIterVector(v, l, q - 1);
+            sortIterVector(v, q + 1, r);
+        }
+    }  
+    
+};
