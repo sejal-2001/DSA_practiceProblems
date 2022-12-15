@@ -1,0 +1,38 @@
+
+#include <iostream>
+#include<stack>
+
+
+using namespace std;
+
+int main()
+{
+    stack<string> st;
+    
+    st.push("sejal");
+    st.push("anmol");
+    st.push("simran");
+    cout<<st.top()<<endl;
+    
+    st.push("gunjan");
+    cout<<st.size()<<endl;
+    while(!st.empty())
+    {
+        cout<<" "<<st.top()<<endl;
+        st.pop();
+    }
+    
+    if(st.empty())
+    {
+        cout<<"true"<<endl;
+    }
+    
+    else{
+        cout<<"false"<<endl;
+    }
+    //cout<<st.top();
+    cout<<st.size()<<endl;
+    
+
+    return 0;
+}
