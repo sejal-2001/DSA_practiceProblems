@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int minimumRounds(vector<int>& tasks) {
+          sort(begin(tasks) , end(tasks));
+        int n = tasks.size(), j = 0, res = 0;
+        for(int i = 1; i < n; i++){
+            if(tasks[i] != tasks[i - 1] || i == n - 1){
+                if(i == n - 1 && tasks[i] == tasks[i - 1]) i++;
+                int x = i - j;
+                j = i;
+                if(x <= 1 || (i == n - 1 && tasks[i] != tasks[i - 1])) return -1;
+                while(x > 0 && x % 3 != 0){
+                    x -= 2;
+                    res++;
+                }
+                res += x/3;
+            }
+        }
+        return res ? res : -1;
+        
+    }
+};
