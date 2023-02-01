@@ -1,0 +1,62 @@
+A simple solution is to traverse the tree using (Inorder or Preorder or Postorder) and keep track of the closest smaller or same element
+
+We can efficiently find the closest smaller or same element in O(H) time where H is the height of BST.
+
+Follow the given steps to solve the problem:
+
+Start at the root Node
+If root->data == key, the floor of the key is equal to the root.
+Else if root->data > key, then the floor of the key must lie in the left subtree.
+Else floor may lie in the right subtree but only if there is a value lesser than or equal to the key. 
+If not, then the root is the key.
+
+Time Complexity: O(H), where H is the height of the tree
+Auxiliary Space: O(1)
+
+CODE : 
+
+#include <bits/stdc++.h> 
+/************************************************************
+
+    Following is the TreeNode class structure
+
+    template <typename T>
+    class TreeNode {
+       public:
+        T val;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T val) {
+            this->val = val;
+            left = NULL;
+            right = NULL;
+        }
+    };
+
+************************************************************/
+
+int floorInBST(TreeNode<int> * root, int x)
+{
+    // Write your code here.
+      int floor = -1;
+      while(root != NULL){
+          
+          if(root->val == x){
+              floor = root->val;
+              return floor;
+          }
+
+          if(x < root->val)
+          {
+              root=root->left;
+          }
+          else{
+              floor = root->val;
+              root= root->right;
+          }
+
+      }
+      return floor;
+
+}
