@@ -1,0 +1,50 @@
+Given a mathematical equation that contains only numbers and +, -, *, /. Print the equation in reverse, such that the equation is reversed, but the numbers remain the same.
+It is guaranteed that the given equation is valid, and there are no leading zeros.
+
+
+CODE:
+
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution
+{
+  public:
+    string reverseEqn (string s)
+   
+        { 
+             string ans="";
+            stack<char> stk;
+            for ( int i=s.size()-1;i>=0;i--){
+                if( s[i]>='0' && s[i] <= '9') stk.push(s[i]);
+                else{
+                    while(!stk.empty()){
+                        ans+=stk.top();
+                        stk.pop();
+                    }
+                    ans+=s[i];
+                }
+            }
+            while(!stk.empty()){
+                ans+=stk.top();
+                stk.pop();
+            }
+            
+            return ans;
+        }
+            
+};
+
+//{ Driver Code Starts.
+int main()
+{
+    int t; cin >> t;
+    while (t--)
+    {
+        string s; cin >> s;
+        Solution ob;
+        cout <<ob.reverseEqn (s) << endl;
+    }
+}
