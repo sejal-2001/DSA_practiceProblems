@@ -1,0 +1,34 @@
+Given a BST and an integer. Find the least absolute difference between any node value of the BST and the given integer.
+
+CODE:
+
+Tree Node
+struct Node {
+    int data;
+    Node *left;
+    Node *right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+
+class Solution
+{
+    public:
+    void task(int &ans , Node* node, int k){
+        if (!node) return;
+        task(ans, node->left, k);
+        ans=min(ans,abs(k-node->data));
+        task(ans, node->right , k);
+    }
+    int minDiff(Node *root, int k)
+    {
+        int ans=INT_MAX;
+        if (!root) return -1;
+        task(ans, root, k);
+        return ans;
+    }
+};
