@@ -1,0 +1,45 @@
+When we want to access the private data members and variables . we have to use getters and setters method to access them.
+
+following is the implementation of this:
+
+#include<iostream>
+using namespace std;
+
+class sejal{
+    private:
+    int age;
+
+    public:
+    char name;
+
+    int getage(){
+        return age;
+    }
+    int getname(){
+        return name;
+    }
+
+    void setage(int a){
+        age = a;
+    }
+
+    void setname(char n){
+        name = n;
+    }
+
+
+};
+
+int main(){
+
+    sejal s;
+    //s.age = 90;
+    // s.name = 'W';
+
+    cout<<"nmae of sejal is "<<s.getname()<<endl;
+    cout<<"age is "<<s.getname()<<endl;
+    s.setage(100);
+    cout<<"age is "<<s.getage()<<endl;
+    
+    return 0;
+}
