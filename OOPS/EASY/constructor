@@ -1,0 +1,69 @@
+#include <iostream>
+
+using namespace std;
+
+class sejal{
+    
+    int age;
+    public:
+    char name;
+    
+    //defining our own constructor
+    
+    sejal(){
+        cout<<"constructir callled"<<endl;
+        
+    }
+    
+    //paramaterised constructor
+    
+    sejal(int a,char n){
+        this->age = a;
+        this->name = n;
+        
+    }
+    
+    //copy constructor
+    sejal(sejal& temp)
+    {
+        cout<<"copy constructor called"<<endl;
+        this->age = temp.age;
+        this->name = temp.name;
+    }
+    
+    
+    int getage(){
+        return age;
+    }
+    char getname(){
+        return name;
+    }
+    
+    int setage(int a){
+       age =a;
+    }
+    
+    char setname(char c){
+        name = c;
+    }
+    //printing the function
+    void print(){
+        cout<<age<<endl;
+        cout<<name<<endl;  
+    }
+    
+};
+
+int main()
+{
+    
+     sejal ser(90,'A');
+
+    ser.print();
+    //creating and calling the copy constructor
+    sejal seju(ser);
+    seju.print();
+
+
+    return 0;
+}
