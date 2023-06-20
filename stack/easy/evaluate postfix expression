@@ -1,0 +1,54 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+bool isoperator(char ch) {
+    return (ch == '+' || ch == '-' || ch == '*' || ch == '/');
+}
+
+int Operation(char op, int o1, int o2) {
+    switch (op) {
+        case '+':
+            return o1 + o2;
+        case '-':
+            return o1 - o2;
+        case '*':
+            return o1 * o2;
+        case '/':
+            return o1 / o2;
+        default:
+            return 0;
+    }
+}
+
+int postFIX(string& expression) {
+    stack<int> stack;
+
+    for (char ch : expression) {
+        if (isdigit(ch)) {
+            stack.push(ch - '0'); // Convert char to integer
+        } else if (isoperator(ch)) {
+            int o2 = stack.top();
+            stack.pop();
+            int o1 = stack.top();
+            stack.pop();
+
+            int result = Operation(ch, o1, o2);
+            stack.push(result);
+        }
+    }
+
+    return stack.top();
+}
+
+int main() {
+    string str;
+    cout << " enter your expression string: ";
+    cin >> str;
+
+    int result = postFIX(str);
+    cout << "Result: " << result << endl;
+
+    return 0;
+}
