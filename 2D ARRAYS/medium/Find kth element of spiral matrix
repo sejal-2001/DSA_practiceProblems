@@ -1,0 +1,100 @@
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+#define MAX 1000
+
+// } Driver Code Ends
+class Solution
+{
+    public:
+    /*You are required to complete this method*/
+    int findK(int a[MAX][MAX],int n,int m,int k)
+    {
+ 		// Your code goes here.
+ 		
+ 		int left = 0;
+ 		int right = m-1;
+ 		int top = 0;
+ 		int bottom = n-1;
+ 		int ans;
+ 		while(left<=right && top<=bottom){
+ 		    
+                    // from left to right in first row
+ 		    for(int i = left;i<=right;i++){
+ 		        if(k==1){
+ 		             return a[top][i];
+ 		        } 
+ 		        k--;
+ 		    }
+ 		    top++;
+ 		    
+                    // from top to bottom in last column 
+ 		    for(int j = top;j<=bottom;j++){
+ 		        if(k==1){
+ 		             return  a[j][right];
+ 		        }
+ 		        k--;
+ 		    }
+ 		    right --;
+ 		    
+ 		    if(top<=bottom){  // as top value is changed so check and as left and right are checked below in for loop so no need to check explicitly 
+                        // from right to left in last column 
+ 		        for(int i = right;i>=left;i--){
+ 		            if(k==1){
+ 		                return a[bottom][i];
+ 		            }
+ 		            k--;
+ 		        }
+ 		        bottom--;
+ 		    }
+ 		    
+ 		    if(left<=right){
+                         // from bottom to top in first column
+ 		        for(int j = bottom;j>=top;j--){
+ 		            if(k==1){
+ 		                return a[j][left];
+ 		            }
+ 		            k--;
+ 		        }
+ 		        left++;
+ 		    }
+ 		   
+                   // after this the outer rectangle traversing is over and the inner one gets started
+ 		}
+ 		
+ 		return 0;
+    }
+};
+
+
+
+
+
+//{ Driver Code Starts.
+int main()
+{
+    int T;
+    cin>>T;
+  
+    while(T--)
+    {
+        int n,m;
+        int k=0;
+        //cin>>k;
+        cin>>n>>m>>k;
+        int a[MAX][MAX];
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                cin>>a[i][j];
+            }
+        }
+        Solution ob;
+        cout<<ob.findK(a,n,m,k)<<endl;
+        
+       
+    }
+}
+// } Driver Code Ends
